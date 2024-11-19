@@ -1,12 +1,12 @@
 let randomNumber
 let userGuesses = []
-let remainingGuesses = 10
+let remainingGuesses = 5
 
 function startGame(){
 
     randomNumber = Math.floor(Math.random() * 100) + 1
     userGuesses = []
-    remainingGuesses = 10
+    remainingGuesses = 5
 
     document.getElementById('result').textContent = ''
     document.getElementById('result').classList.remove('congrats-animation')
