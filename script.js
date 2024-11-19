@@ -6,31 +6,42 @@ function startGame(){
 
     randomNumber = Math.floor(Math.random() * 100) + 1
     userGuesses = []
-    remainingGuesses = 5
+    remainingGuesses = 10
 
     document.getElementById('result').textContent = ''
+    document.getElementById('result').classList.remove('congrats-animation')
     document.getElementById('guesses').textContent = ''
     document.getElementById('remainingGuesses').style.display = 'none'
+    document.getElementById('userGuess').value = ''
+    document.getElementById('userGuess').style.display = 'block'
     document.getElementById('feedback').textContent = ''
+    document.getElementById('submit').style.display = 'inline-block'
     document.getElementById('submit').disabled = true
+    document.getElementById('submit').style.opacity = '0.6'
     document.getElementById('playAgain').style.display = 'none'
+    document.querySelector('h1').textContent = 'Guess the number if you can!'
+    document.querySelector('p').textContent = 'Enter a number between 1 and 100'
 }
 
 document.getElementById('userGuess').addEventListener('input', () => {
-    const userGuess = document.getElementById('userGuess').value
+    
+    const userGuess = document.getElementById('userGuess').value.trim()
+    const submit = document.getElementById('submit')
 
     if(userGuess !== ''){
-        document.getElementById('submit').disabled = false
+        submit.disabled = false
+        submit.style.opacity = '1'
     } else {
-        document.getElementById('submit').disabled = true
+        submit.disabled = true
+        submit.style.opacity = '0.6'
     }
 })
 
 document.getElementById('submit').addEventListener('click', () => {
 
-    const userGuess = parseInt(document.getElementById('userGuess').value)
+    const userGuess = parseInt(document.getElementById('userGuess').value);
 
-    if(isNaN(userGuess || userGuess < 1 || userGuess > 100)){
+    if(isNaN(userGuess) || userGuess < 1 || userGuess > 100){
         alert('please enter a number between 1 and 100')
         return;
     }
